@@ -1,0 +1,176 @@
+{
+	"info": {
+		"_postman_id": "4de8d4b0-36d8-4908-ab5f-1e13a78a84c7",
+		"name": "Employee API  responce",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Login user",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n   \"username\": \"test\",\r\n   \"password\": \"Test@123\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8000/auth/login-user/",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"auth",
+						"login-user",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "get access token",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"refresh\": \"eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ0b2tlbl90eXBlIjoicmVmcmVzaCIsImV4cCI6MTYzNjg4NDU4MSwiaWF0IjoxNjM2Nzk4MTgxLCJqdGkiOiJmYTczMjViOGNlMDU0YWZkOTEwODcyYjZmOWQzZWI0MCIsInVzZXJfaWQiOjF9.tjTYRTthHPBHVFuooEv29O_pr1rT10uDW4VM2tiOhlk\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8000/auth/token/refresh/",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"auth",
+						"token",
+						"refresh",
+						""
+					]
+				},
+				"description": "getting new access token, when the current access token were expired"
+			},
+			"response": []
+		},
+		{
+			"name": "all empployees ",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjM2ODgzMjUxLCJpYXQiOjE2MzY3OTY3MTAsImp0aSI6ImU2OTU1Nzk2MTE1NjRhMzg5MDc4MTg1YWExYTQ4MTM0IiwidXNlcl9pZCI6MX0.RSBmc3utYdpOfQPfpDqOlCgzclIdEGJbYdQlGFe3ND0",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8000/employee/all-employees/",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"employee",
+						"all-employees",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Add Employees",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjM2ODgzMjUxLCJpYXQiOjE2MzY3OTY3MTAsImp0aSI6ImU2OTU1Nzk2MTE1NjRhMzg5MDc4MTg1YWExYTQ4MTM0IiwidXNlcl9pZCI6MX0.RSBmc3utYdpOfQPfpDqOlCgzclIdEGJbYdQlGFe3ND0",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "data_file",
+							"type": "file",
+							"src": "/H:/test-file.csv"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost:8000/employee/add-employees/",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"employee",
+						"add-employees",
+						""
+					]
+				},
+				"description": "admin can add employees data using csv files"
+			},
+			"response": []
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	]
+}
