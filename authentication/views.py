@@ -22,8 +22,8 @@ class LoginAPIView(APIView):
                     'tokens': get_tokens(user)
                 }
                 return Response(data, status=status.HTTP_200_OK)
-            error = {'message': 'Account not active'}
+            error = {'message': 'Account is not active'}
             return Response(error, status=status.HTTP_400_BAD_REQUEST)
         else:    
-            error = {'status': 'Incorrect user credentials'}
+            error = {'message': 'Incorrect user credentials'}
             return Response(error, status=status.HTTP_401_UNAUTHORIZED)

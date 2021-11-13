@@ -34,16 +34,18 @@ class AddEmployeesAPIView(APIView):
         rows_count = len(data_set.axes[0]) 
         cols_count = len(data_set.axes[1]) 
         
-        if rows_count <= 20 and cols_count >= 5:
+        if rows_count <= 19 and cols_count >= 5:
             try:
                 for dtl in reader:
                     employee_obj = Employee()
-                    employee_obj.employee_code = dtl['employee-code']
-                    employee_obj.employee_name = dtl['employee-name']
-                    employee_obj.department = dtl['department']
-                    employee_obj.age = int(dtl['age'])
-                    employee_obj.experience = int(dtl['experience'])
-                    employee_obj.save()
+                    employee_instance = Employee.objects.filter(employee_code=dtl['employee-code'])
+                    if not employee_instance.exists():
+                        employee_obj.employee_code = dtl['employee-code']
+                        employee_obj.employee_name = dtl['employee-name']
+                        employee_obj.department = dtl['department']
+                        employee_obj.age = int(dtl['age'])
+                        employee_obj.experience = int(dtl['experience'])
+                        employee_obj.save()
                 return Response({"message": "Employees datas uploaded"}, status=status.HTTP_201_CREATED)
             except:
                 error = {"message": "somthing went wrong!, CSV file columns heading must be 'employee-code', 'emaployee-name, 'department', 'age', 'experience'"}
